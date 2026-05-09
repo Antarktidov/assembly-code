@@ -10,8 +10,8 @@ message1: db ">What's your name?",10    ;Как тебя зовут?
 message2: db ">Nice name, "             ;Замечательное имя, {имя}
 BUFSIZE: db 20                          ;Размер буфера, где хранится имя
 
-section .bss
-buffer resb 10
+section .bss            ; секция не инициализированных данных
+buffer resb 10          ; буфер для ввода имени
  
 section .text           ; объявление секции кода
 _start:                 ; объявление метки _start - точки входа в программу
