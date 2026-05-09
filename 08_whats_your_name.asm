@@ -5,10 +5,10 @@
 ;Ассемблер - nasm
 global _start           ; делаем метку метку _start видимой извне
  
-section .data   ; секция данных
-message1: db ">What's your name?",10
-message2: db ">Nice name, "
-BUFSIZE: db 20
+section .data           ; секция данных
+message1: db ">What's your name?",10    ;Как тебя зовут?
+message2: db ">Nice name, "             ;Замечательное имя, {имя}
+BUFSIZE: db 20                          ;Размер буфера, где хранится имя
 
 section .bss
 buffer resb 10
@@ -26,9 +26,9 @@ _start:                 ; объявление метки _start - точки в
     ;Получаем имя"
     mov eax, 0          ; 0 - номер системного вызова функции read
     mov edi, 0          ; 0 - дескриптор файла стандартного вызова stdin
-    mov rsi, buffer
-    mov edx, [BUFSIZE]
-    syscall
+    mov rsi, buffer     ; адрес буфера для ввода
+    mov edx, [BUFSIZE]  ; размер буфера ввода
+    syscall             ; выполняем системный вызов read
 
     ;Выводим: "Nice name, "
     mov rax, 1          ; 1 - номер системного вызова функции write
